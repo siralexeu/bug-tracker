@@ -1,13 +1,21 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+<<<<<<< HEAD
 import { useNavigate } from "react-router-dom";
+=======
+import { useHistory } from "react-router-dom";
+>>>>>>> fa51d84dcad7e89172ce15cf4023b93dc017cb7a
 import { getBugs } from "../../../Controllers/Redux/bugSlice";
 import Card from "../../Components/Dashboard/card";
 
 export default () => {
   const dispatch = useDispatch();
   const bugs = useSelector((state) => state.bugs);
+<<<<<<< HEAD
   const navigate = useNavigate();
+=======
+  const browserHistory = useHistory();
+>>>>>>> fa51d84dcad7e89172ce15cf4023b93dc017cb7a
   let highCount = 0;
   let midCount = 0;
   let lowCount = 0;
@@ -18,7 +26,11 @@ export default () => {
   }
 
   function redirect() {
+<<<<<<< HEAD
     navigate("/viewbugs");
+=======
+    browserHistory.push("/viewbugs");
+>>>>>>> fa51d84dcad7e89172ce15cf4023b93dc017cb7a
   }
 
   function filterBugs(priority) {
@@ -28,8 +40,13 @@ export default () => {
   }
 
   useEffect(() => {
+<<<<<<< HEAD
     dispatch(getBugs());
   }, [dispatch]);
+=======
+    dispatch(getBugs);
+  }, [bugs == undefined]);
+>>>>>>> fa51d84dcad7e89172ce15cf4023b93dc017cb7a
 
   return (
     <div className="page-container">
