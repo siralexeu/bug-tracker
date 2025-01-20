@@ -16,8 +16,8 @@ function App() {
       ) : (
         <>
           <Sidebar />
-          <Routes> {}
-            <Route path="/" element={<Dashboard />} /> {/* Utilizare corectă a element */}
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
             <Route path="/viewbugs" element={<ViewBugPage />} />
             <Route
               path="/create"
