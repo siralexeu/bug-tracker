@@ -1,58 +1,42 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-<<<<<<< HEAD
 import { useNavigate } from "react-router-dom";
-=======
-import { useHistory } from "react-router-dom";
->>>>>>> fa51d84dcad7e89172ce15cf4023b93dc017cb7a
 import { getBugs } from "../../../Controllers/Redux/bugSlice";
 import Card from "../../Components/Dashboard/card";
 
 export default () => {
   const dispatch = useDispatch();
   const bugs = useSelector((state) => state.bugs);
-<<<<<<< HEAD
   const navigate = useNavigate();
-=======
-  const browserHistory = useHistory();
->>>>>>> fa51d84dcad7e89172ce15cf4023b93dc017cb7a
-  let highCount = 0;
-  let midCount = 0;
-  let lowCount = 0;
-  if (bugs != undefined) {
-    highCount = filterBugs(1);
-    midCount = filterBugs(2);
-    lowCount = filterBugs(3);
-  }
+  const [highCount, setHighCount] = useState(0);
+  const [midCount, setMidCount] = useState(0);
+  const [lowCount, setLowCount] = useState(0);
 
   function redirect() {
-<<<<<<< HEAD
     navigate("/viewbugs");
-=======
-    browserHistory.push("/viewbugs");
->>>>>>> fa51d84dcad7e89172ce15cf4023b93dc017cb7a
   }
 
   function filterBugs(priority) {
-    return bugs.filter((bug) => {
-      return bug.priority == priority;
-    });
+    return bugs.filter((bug) => bug.priority === priority).length;
   }
 
   useEffect(() => {
-<<<<<<< HEAD
     dispatch(getBugs());
   }, [dispatch]);
-=======
-    dispatch(getBugs);
-  }, [bugs == undefined]);
->>>>>>> fa51d84dcad7e89172ce15cf4023b93dc017cb7a
+
+  useEffect(() => {
+    if (bugs) {
+      setHighCount(filterBugs(1));
+      setMidCount(filterBugs(2));
+      setLowCount(filterBugs(3));
+    }
+  }, [bugs]);
 
   return (
     <div className="page-container">
-      <Card priority="1" count={highCount.length} clicked={redirect} />
-      <Card priority="2" count={midCount.length} clicked={redirect} />
-      <Card priority="3" count={lowCount.length} clicked={redirect} />
+      <Card priority="1" count={highCount} clicked={redirect} />
+      <Card priority="2" count={midCount} clicked={redirect} />
+      <Card priority="3" count={lowCount} clicked={redirect} />
     </div>
   );
 };
